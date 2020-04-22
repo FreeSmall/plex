@@ -1,5 +1,12 @@
 FROM ubuntu@sha256:3b029ac9aa8eb5dffd43bb7326891cf64f9c228b3960cec55a56605d2ae2ad42
 
+ARG ARCH=armhf
+ARG S6_OVERLAY_VERSION=v1.22.1.0
+ARG S6_OVERLAY_PATH="https://github.com/just-containers/s6-overlay/releases/download"
+ARG PLEX_DOWNLOAD="https://downloads.plex.tv/plex-media-server-new"
+ARG PLEX_RELEASE=1.19.1.2645-ccb6eb67e
+ENV TERM="xterm" LANG="C.UTF-8" LC_ALL="C.UTF-8"
+
 COPY qemu-arm-static /usr/bin
 COPY s6-overlay-${ARCH}.tar.gz /tmp/s6-overlay-${ARCH}.tar.gz
 COPY root/plex-common.sh /plex-common.sh
@@ -9,12 +16,6 @@ COPY root/etc/cont-init.d/45-plex-hw-transcode-and-connected-tuner /etc/cont-ini
 COPY root/etc/services.d/plex/run /etc/services.d/plex/run
 COPY plexmediaserver_${PLEX_RELEASE}_${ARCH}.deb /tmp/plexmediaserver.deb
 
-ARG ARCH=armhf
-ARG S6_OVERLAY_VERSION=v1.22.1.0
-ARG S6_OVERLAY_PATH="https://github.com/just-containers/s6-overlay/releases/download"
-ARG PLEX_DOWNLOAD="https://downloads.plex.tv/plex-media-server-new" 
-ARG PLEX_RELEASE=1.19.1.2645-ccb6eb67e
-ENV TERM="xterm" LANG="C.UTF-8" LC_ALL="C.UTF-8"
 
 ENTRYPOINT ["/init"]
 
