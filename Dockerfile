@@ -56,4 +56,4 @@ ENV CHANGE_CONFIG_DIR_OWNERSHIP="true" \
 
 HEALTHCHECK --interval=5s --timeout=2s --retries=20 CMD /healthcheck.sh || exit 1
 
-uname -a
+RUN uname -a
