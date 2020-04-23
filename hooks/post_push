@@ -1,0 +1,5 @@
+#!/bin/sh
+
+uname -a
+
+docker push freesmall/plex
