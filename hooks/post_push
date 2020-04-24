@@ -2,4 +2,9 @@
 
 uname -a
 
+docker run --rm --privileged multiarch/qemu-user-static:register --reset
+ls -lah /usr/bin/qemu-arm-static
+
 docker push freesmall/plex
+
+uname -a
